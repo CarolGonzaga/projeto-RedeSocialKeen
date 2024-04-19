@@ -1,9 +1,24 @@
-import '../style.css'
+import { createGlobalStyle } from "styled-components";
 
-function App ({ Component, pageProps }) {
+const GlobalStyle = createGlobalStyle`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+`;
+
+function App({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
-  )
+    <>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-export default App
+export default App;

@@ -2,7 +2,7 @@ function HomePage () {
   
   return (
     <div>
-      SejaDev
+      <h1>Olá Mundo!</h1>
     </div>
   )
 }
