@@ -95,7 +95,7 @@ export default function LoginPage() {
         </Form>
 
         <FormFooter>
-          <Button>Entrar</Button>
+        <Link href="http://localhost:3000"><Button>Entrar</Button></Link>
           <Text>
             Não possui uma conta? <Link href="/signup">Cadastre-se</Link>
           </Text>

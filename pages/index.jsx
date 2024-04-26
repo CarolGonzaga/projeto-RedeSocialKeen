@@ -1,9 +1,16 @@
+import Navbar from "../src/components/layout/Navbar"
+import styled from "styled-components"
+
+const Container = styled.body`
+  
+`
+
 function HomePage () {
   
   return (
-    <div>
-      <h1>Olá Mundo!</h1>
-    </div>
+    <Container>
+      <Navbar />
+    </Container>
   )
 }
 

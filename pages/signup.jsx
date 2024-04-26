@@ -127,7 +127,7 @@ export default function SignupPage() {
         </Form>
 
         <FormFooter>
-          <Button>Cadastrar</Button>
+          <Link href="http://localhost:3000"><Button>Cadastrar</Button></Link>
           <Text>
             Já possui uma conta? <Link href="/login">Entrar</Link>
           </Text>
