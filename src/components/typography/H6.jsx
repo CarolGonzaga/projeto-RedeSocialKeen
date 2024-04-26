@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const H6 = styled.h6`
-  max-width: 353px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   text-align: center;
   color: #000000;

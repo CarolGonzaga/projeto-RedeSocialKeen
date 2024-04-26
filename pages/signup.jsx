@@ -10,21 +10,35 @@ import Text from "../src/components/typography/Text";
 
 import { UserIcon } from "@heroicons/react/24/solid";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon } from "@heroicons/react/24/solid";
 
 const FormContainer = styled.div`
   width: 100%;
   max-width: 574px;
-  max-height: 600px;
+  max-height: 550px;
+  padding: 10px 0;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-grow: 1;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     max-width: 400px;
     max-height: 100%;
+    justify-content: space-evenly;
+  }
+
+  @media (max-width: 330px) {
+    overflow: auto;
+    height: 700px;
+    padding: 30px 0 10px 0;
+  }
+
+  @media (min-width: 760px) and (min-height: 1000px) {
+    margin-top: 100px;
+    gap: 100px;
   }
 `;
 
@@ -37,9 +51,13 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 35px;
+  gap: 30px;
 
   width: 85%;
+
+  @media (min-width: 760px) and (min-height: 1000px) {
+    gap: 50px;
+  }
 `;
 
 const FormLine = styled.div`
@@ -53,6 +71,12 @@ const FormLine = styled.div`
 `;
 
 const StyledUserIcon = styled(UserIcon)`
+  color: ${(props) => props.theme.inputColor};
+  width: 25px;
+  height: 25px;
+`;
+
+const StyledEnvelopeIcon = styled(EnvelopeIcon)`
   color: ${(props) => props.theme.inputColor};
   width: 25px;
   height: 25px;
@@ -74,30 +98,38 @@ const FormFooter = styled.div`
   gap: 10px;
 `;
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <ImageWithSpace>
       <FormContainer>
         <FormHead>
-          <H2>Acesse sua conta</H2>
-          <H6>Preencha os campos abaixo para acessar a comunidade.</H6>
+          <H2>Crie sua conta</H2>
+          <H6>Por favor, preencha o formulário abaixo para criar sua conta.</H6>
         </FormHead>
 
         <Form>
           <FormLine>
             <StyledUserIcon />
-            <Input placeholder="Usuário ou e-mail" type="email" />
+            <Input placeholder="Nome de Usuário" type="text" />
+          </FormLine>
+          <FormLine>
+            <StyledEnvelopeIcon />
+            <Input placeholder="E-mail" type="email" />
           </FormLine>
           <FormLine>
             <StyledLockIcon />
             <Input placeholder="Senha" type="password" />
           </FormLine>
+          <FormLine>
+            <StyledLockIcon />
+            <Input placeholder="Repita a Senha" type="password" />
+          </FormLine>
         </Form>
 
         <FormFooter>
-          <Button>Entrar</Button>
+          <Button>Cadastrar</Button>
           <Text>
-            Não possui uma conta? <Link href="/signup">Cadastre-se</Link>
+            Já possui uma conta? <Link href="/login">Entrar</Link>
           </Text>
         </FormFooter>
       </FormContainer>

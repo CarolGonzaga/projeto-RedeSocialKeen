@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-const H2 = styled.h2`
-  font-size: 30px;
-  padding: 0 5px;
+const Text = styled.p`
   text-align: center;
+  font-size: 12px;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
-    font-size: 36px;
+    font-size: 14px;
   }
 `
 
-export default H2
+export default Text

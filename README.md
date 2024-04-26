@@ -5,3 +5,4 @@
 - react
 - babel
 - heroicons
+- mobile first
