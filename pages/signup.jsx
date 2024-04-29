@@ -17,12 +17,14 @@ const FormContainer = styled.div`
   max-width: 574px;
   max-height: 550px;
   padding: 10px 0;
+  margin-top: 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
+  gap: 30px;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     max-width: 400px;
@@ -30,10 +32,10 @@ const FormContainer = styled.div`
     justify-content: space-evenly;
   }
 
-  @media (max-width: 330px) {
-    overflow: auto;
+  @media (max-width: 370px) {
     height: 700px;
-    padding: 30px 0 10px 0;
+    padding: 10px 0 10px 0;
+    gap: 50px;
   }
 
   @media (min-width: 760px) and (min-height: 1000px) {

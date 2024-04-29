@@ -34,7 +34,7 @@ const StyledHead = styled.div`
   background-size: contain;
 
   width: 100vw;
-  height: 20vh;
+  height: 25vh;
   max-height: calc(33vh - 50px);
 
   display: flex;
@@ -48,16 +48,29 @@ const StyledHead = styled.div`
     max-height: 100vh;
     max-width: 426px;
   }
+
+  @media (max-height: ${(props) => props.theme.HEIGHT_XL}) and
+  (max-width: ${(props) => props.theme.HEIGHT_XL}) and
+  (min-width: 371px) {
+    height: 400px;
+    max-height: 23vh;
+  }
+
+  @media (max-width: 370px) and (max-height: 600px) {
+    height: 500px;
+    max-height: 30vh;
+  }
 `;
 
 const StyledBody = styled.div`
-  width: 100vw;
+  width: 80vw;
 
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-y: auto;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     height: 100%;

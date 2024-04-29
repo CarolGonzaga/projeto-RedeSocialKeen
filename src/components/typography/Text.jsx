@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Text = styled.p`
-  text-align: center;
+  text-align: ${(props) => (props.textAlign ? props.textAlign : 'center')};
   font-size: 12px;
   color: ${(props) => props.theme.black};
 

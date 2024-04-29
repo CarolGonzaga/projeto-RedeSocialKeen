@@ -7,7 +7,10 @@ const H6 = styled.h6`
   line-height: 24px;
   text-align: center;
   color: #000000;
-  padding: 0 5px;
+
+  @media (max-width: 320px) {
+    font-size: 12px;
+  }
 `;
 
 export default H6;

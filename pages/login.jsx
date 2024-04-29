@@ -15,16 +15,24 @@ const FormContainer = styled.div`
   width: 100%;
   max-width: 574px;
   max-height: 600px;
+  padding: 10px 0;
+  margin-top: 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   flex-grow: 1;
+  gap: 30px;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     max-width: 400px;
     max-height: 100%;
+  }
+
+  @media (max-width: 320px) {
+    max-width: 100vw;
+    gap: 50px;
   }
 `;
 
@@ -72,6 +80,10 @@ const FormFooter = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 320px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export default function LoginPage() {

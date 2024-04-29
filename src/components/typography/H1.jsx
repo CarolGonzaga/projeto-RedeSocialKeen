@@ -9,9 +9,15 @@ const H1 = styled.h1`
   color: ${(props) => props.theme.primary};
   line-height: 58px;
   height: 50px;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : '60px')};
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     font-size: 50px;
+  }
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) and
+  (min-width: 760px) {
+    font-size: 40px;
   }
 `
 
