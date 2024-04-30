@@ -6,3 +6,5 @@
 - babel
 - heroicons
 - mobile first
+- next connect
+- next joi
