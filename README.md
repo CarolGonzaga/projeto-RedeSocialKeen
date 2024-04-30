@@ -9,3 +9,4 @@
 - next connect
 - next joi
 - mongoDB
+- bcryptjs
