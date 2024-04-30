@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+const StyledInput = styled.input`
   background-color: transparent;
   border: none;
   width: 100%;
 `
+
+function Input ({ ...props }) {
+  return (
+    <StyledInput {...props} />
+  )
+}
 
 export default Input

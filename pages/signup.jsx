@@ -24,7 +24,6 @@ const FormContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
-  gap: 30px;
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
     max-width: 400px;
@@ -35,11 +34,27 @@ const FormContainer = styled.div`
   @media (max-width: 370px) {
     height: 700px;
     padding: 10px 0 10px 0;
-    gap: 50px;
   }
 
   @media (min-width: 760px) and (min-height: 1000px) {
     margin-top: 70px;
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  width: 85%;
+  max-width: 400px;
+
+  @media (min-width: 1000px) {
+    gap: 80px;
+  }
+
+  @media (min-height: 800px) {
     gap: 70px;
   }
 `;
@@ -48,19 +63,14 @@ const FormHead = styled.div`
   max-width: 85%;
 `;
 
-const Form = styled.form`
+const FormBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 25px;
-
-  width: 85%;
-
-  @media (min-width: 760px) and (min-height: 1000px) {
-    gap: 50px;
-  }
-`;
+  width: 100%;
+`
 
 const FormLine = styled.div`
   display: flex;
@@ -91,8 +101,6 @@ const StyledLockIcon = styled(LockClosedIcon)`
 `;
 
 const FormFooter = styled.div`
-  max-width: 90%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,36 +112,42 @@ export default function SignupPage() {
   return (
     <ImageWithSpace>
       <FormContainer>
-        <FormHead>
-          <H2>Crie sua conta</H2>
-          <H6>Por favor, preencha o formulário abaixo para criar sua conta.</H6>
-        </FormHead>
-
         <Form>
-          <FormLine>
-            <StyledUserIcon />
-            <Input placeholder="Nome de Usuário" type="text" />
-          </FormLine>
-          <FormLine>
-            <StyledEnvelopeIcon />
-            <Input placeholder="E-mail" type="email" />
-          </FormLine>
-          <FormLine>
-            <StyledLockIcon />
-            <Input placeholder="Senha" type="password" />
-          </FormLine>
-          <FormLine>
-            <StyledLockIcon />
-            <Input placeholder="Repita a Senha" type="password" />
-          </FormLine>
-        </Form>
+          <FormHead>
+            <H2>Crie sua conta</H2>
+            <H6>
+              Por favor, preencha o formulário abaixo para criar sua conta.
+            </H6>
+          </FormHead>
 
-        <FormFooter>
-          <Link href="http://localhost:3000"><Button>Cadastrar</Button></Link>
-          <Text>
-            Já possui uma conta? <Link href="/login">Entrar</Link>
-          </Text>
-        </FormFooter>
+          <FormBody>
+            <FormLine>
+              <StyledUserIcon />
+              <Input placeholder="Nome de Usuário" type="text" />
+            </FormLine>
+            <FormLine>
+              <StyledEnvelopeIcon />
+              <Input placeholder="E-mail" type="email" />
+            </FormLine>
+            <FormLine>
+              <StyledLockIcon />
+              <Input placeholder="Senha" type="password" />
+            </FormLine>
+            <FormLine>
+              <StyledLockIcon />
+              <Input placeholder="Repita a Senha" type="password" />
+            </FormLine>
+          </FormBody>
+
+          <FormFooter>
+            <Link href="http://localhost:3000">
+              <Button>Cadastrar</Button>
+            </Link>
+            <Text>
+              Já possui uma conta? <Link href="/login">Entrar</Link>
+            </Text>
+          </FormFooter>
+        </Form>
       </FormContainer>
     </ImageWithSpace>
   );

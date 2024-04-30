@@ -4,7 +4,7 @@ const H6 = styled.h6`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  line-height: 24px;
+  line-height: 18px;
   text-align: center;
   color: #000000;
 
