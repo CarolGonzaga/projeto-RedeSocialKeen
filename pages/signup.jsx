@@ -39,8 +39,8 @@ const FormContainer = styled.div`
   }
 
   @media (min-width: 760px) and (min-height: 1000px) {
-    margin-top: 100px;
-    gap: 100px;
+    margin-top: 70px;
+    gap: 70px;
   }
 `;
 
@@ -53,7 +53,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
 
   width: 85%;
 

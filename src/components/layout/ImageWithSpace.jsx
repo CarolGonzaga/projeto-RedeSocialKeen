@@ -84,7 +84,7 @@ export default function ImageWithSpace({ children }) {
     <StyledFlex>
       <StyledHead>
         <H1>#Social Keen</H1>
-        <H4>Comunidade focada no público Queer</H4>
+        <H4>Foco no público LGBTQIA+</H4>
       </StyledHead>
 
       <StyledBody>{children}</StyledBody>

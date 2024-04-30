@@ -1,16 +1,19 @@
 import styled from "styled-components"
 
 const PostContainer = styled.div`
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.backgroundPost};
   width: 100%;
+  min-height: 154px;
   box-sizing: border-box;
   border-radius: 5px;
+  border: 1px dashed ${(props) => props.theme.black};
   padding: 10px;
 `
 
 const StyledUsername = styled.p`
   font-weight: bold;
   font-size: 16px;
+  color: ${(props) => props.theme.primary};
 `
 
 const StyledDate = styled.p`
@@ -19,18 +22,17 @@ const StyledDate = styled.p`
 
 const StyledTextContainer = styled.div`
   margin: 20px 0;
-  overflow-y: auto;
-  max-height: 65px;
-  font-size: 12px;
+  font-size: 14px;
 `
 
 function Post() {
   return (
     <PostContainer>
-      <StyledUsername>@usuário</StyledUsername>
+      <StyledUsername>@AnaCaroline</StyledUsername>
       <StyledDate>01 de Janeiro de 2024</StyledDate>
       <StyledTextContainer>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales ut nunc non suscipit. Ut faucibus justo ac ligula feugiat faucibus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales ut nunc non suscipit. Ut faucibus justo ac ligula feugiat faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales ut nunc non suscipit. Ut faucibus justo ac ligula feugiat faucibus.
+        FRASE DE EFEITO!
+        Frase de Efeito 2
       </StyledTextContainer>
     </PostContainer>
   )

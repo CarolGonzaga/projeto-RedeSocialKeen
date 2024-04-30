@@ -5,7 +5,7 @@ import Button from "../inputs/Button";
 import Text from "../typography/Text";
 
 const PostBox = styled.div`
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.backgroundPost};
   width: 100%;
   box-sizing: border-box;
   border: 1px dashed ${(props) => props.theme.black};
@@ -23,7 +23,7 @@ const TextContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.HEIGHT_XL}) or
   (min-height: ${(props) => props.theme.HEIGHT_XL}) {
-    margin: 40px;
+    margin: 0 40px;
   }
 `
 

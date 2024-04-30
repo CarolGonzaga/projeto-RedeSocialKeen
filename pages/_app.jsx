@@ -27,6 +27,21 @@ const GlobalStyle = createGlobalStyle`
   a:hover {
     color: ${(props) => props.theme.primaryHover};
   }
+
+  *::-webkit-scrollbar {
+      width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+      background: ${(props) => props.theme.white};
+      border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.black};
+      border-radius: 10px;
+      border: none;
+  }
 `;
 
 function App({ Component, pageProps }) {

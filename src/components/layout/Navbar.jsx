@@ -5,25 +5,15 @@ import H1 from "../typography/H1";
 import Text from "../typography/Text";
 
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
+import H4 from "../typography/H4";
 
 const StyledNavbar = styled.div`
   width: 100vw;
   max-width: 1000px;
-  height: 150px;
-
-  background-color: ${(props) => props.theme.backgroundIndex};
-
-  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) {
-    height: 223px;
-  }
-
-  @media (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    height: 223px;
-  }
 `;
 
 const StyledNav = styled.div`
-  background-image: url("/fundo5.png");
+  background-image: url("/fundo3.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -35,23 +25,48 @@ const StyledNav = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
   @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
   (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    background-image: url("/fundo4.png");
+    background-image: url("/fundo2.png");
     height: 150px;
   }
+
+  @media (max-width: 320px) {
+    height: 70px;
+  }
+
 `;
+
+const StyledH1 = styled(H1)`
+  font-size: 36px;
+  margin-top: 0px;
+  line-height: 50px;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 320px) {
+    font-size: 30px;
+  }
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
+  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
+    font-size: 50px;
+  }
+
+`
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+`
 
 const StyledBar = styled.div`
   width: 100vw;
   height: 50px;
+  padding: 0 30px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
 
   @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
   (min-width: ${(props) => props.theme.HEIGHT_XL}) {
@@ -72,10 +87,10 @@ function Navbar() {
   return (
     <StyledNavbar>
       <StyledNav>
-        <H1 marginTop="0">#Social Keen</H1>
+        <StyledH1>#Social Keen</StyledH1>
       </StyledNav>
       <StyledBar>
-        <Text>Olá, @usuario!</Text>
+        <StyledText>Olá, @usuario!</StyledText>
         <Link href="/login">
           <StyledEndIcon />
         </Link>
