@@ -36,6 +36,7 @@ const StyledHead = styled.div`
   width: 100vw;
   height: 25vh;
   max-height: calc(33vh - 50px);
+  margin-bottom: 20px;
 
   display: flex;
   flex-direction: column;

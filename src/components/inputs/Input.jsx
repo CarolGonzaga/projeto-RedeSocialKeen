@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
@@ -6,10 +7,10 @@ const StyledInput = styled.input`
   width: 100%;
 `
 
-function Input ({ ...props }) {
+const Input = forwardRef(({ ...props }, ref) => {
   return (
-    <StyledInput {...props} />
+    <StyledInput {...props} ref={ref} />
   )
-}
+})
 
 export default Input
