@@ -1,6 +1,7 @@
 const theme = {
   primary: '#E85972',
   primaryHover: '#E4516B',
+  secundary: '#F3D1D7',
   backgroundPost: "#FFFFFF",
   backgroundBody: '#E4E4E4',
   backgroundIndex: '#F8F8F8',

@@ -20,7 +20,7 @@ export const login = async (body) => {
     const user = await User.findOne({
       $or: [
         { email: body.userOrEmail },
-        { user: body.userOrEmail }
+        { username: body.userOrEmail }
       ]
     })
 

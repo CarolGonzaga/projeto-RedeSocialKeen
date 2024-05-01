@@ -10,6 +10,7 @@ import H4 from "../typography/H4";
 const StyledNavbar = styled.div`
   width: 100vw;
   max-width: 1000px;
+  background-color: ${props => props.theme.secundary};
 `;
 
 const StyledNav = styled.div`
@@ -30,6 +31,18 @@ const StyledNav = styled.div`
   (min-width: ${(props) => props.theme.HEIGHT_XL}) {
     background-image: url("/fundo2.png");
     height: 150px;
+  }
+
+  @media (min-width: 650px) and  
+  (max-width: ${(props) => props.theme.HEIGHT_XL}) {
+    background-image: url("/fundo2.png");
+    background-size: cover;
+  }
+
+  @media (min-width: 500px) and  
+  (max-width: 650px) {
+    background-image: url("/fundo3.png");
+    background-size: cover;
   }
 
   @media (max-width: 320px) {
@@ -60,6 +73,7 @@ const StyledText = styled(Text)`
 `
 
 const StyledBar = styled.div`
+  background-color: ${props => props.theme.white};
   width: 100vw;
   height: 50px;
   padding: 0 30px;

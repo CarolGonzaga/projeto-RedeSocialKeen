@@ -1,11 +1,11 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { signupSchema } from "../modules/user/user.schema";
 import axios from "axios";
 import { useRouter } from "next/router";
+
+import { signupSchema } from "../modules/user/user.schema";
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
 import H2 from "../src/components/typography/H2";

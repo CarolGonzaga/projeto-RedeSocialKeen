@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import axios from "axios";
+import { useRouter } from "next/router";
+
+import { loginSchema } from "../modules/user/user.schema";
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
 import H2 from "../src/components/typography/H2";
@@ -63,7 +69,7 @@ const FormBody = styled.div`
   align-items: center;
   gap: 25px;
   width: 100%;
-`
+`;
 
 const FormLine = styled.div`
   display: flex;
@@ -105,13 +111,43 @@ const StyledText = styled(Text)`
   @media (max-width: 320px) {
     gap: 0;
   }
-`
+`;
 
-export default function LoginPage() {
+function LoginPage() {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm({
+    resolver: joiResolver(loginSchema),
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      const { status } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, data)
+      if (status === 200) { 
+        router.push('/')
+      }
+
+    } catch ({ response }) {
+      if (response.data === 'incorrect password') {
+        setError('password', {
+          message: 'Senha incorreta!'
+        })
+      } else if (response.data === 'not found') {
+        setError('userOrEmail', {
+          message: 'Usuário ou E-mail não encontrado!'
+        })
+      }
+    }
+  };
+
   return (
     <ImageWithSpace>
       <FormContainer>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <FormHead>
             <H2>Acesse sua conta</H2>
           </FormHead>
@@ -119,18 +155,27 @@ export default function LoginPage() {
           <FormBody>
             <FormLine>
               <StyledUserIcon />
-              <Input placeholder="Usuário ou e-mail" type="email" />
+              <Input
+                label="Usuário ou E-mail"
+                {...register("userOrEmail")}
+                error={errors.userOrEmail}
+              />
             </FormLine>
             <FormLine>
               <StyledLockIcon />
-              <Input placeholder="Senha" type="password" />
+              <Input
+                label="Senha"
+                type="password"
+                {...register("password")}
+                error={errors.password}
+              />
             </FormLine>
           </FormBody>
 
           <FormFooter>
-            <Link href="http://localhost:3000">
-              <Button>Entrar</Button>
-            </Link>
+          <Button type="submit" disabled={Object.keys(errors).length > 0}>
+              Entrar
+            </Button>
             <StyledText>
               <span>Não possui uma conta?</span>
               <Link href="/signup">Cadastre-se</Link>
@@ -141,3 +186,5 @@ export default function LoginPage() {
     </ImageWithSpace>
   );
 }
+
+export default LoginPage

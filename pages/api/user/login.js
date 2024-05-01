@@ -1,15 +1,10 @@
-import Joi from "joi";
 import { withIronSessionApiRoute } from "iron-session/next";
 
 import validate from "../../../lib/middlewares/validation";
 import createHandler from "../../../lib/middlewares/nextConnect";
 import { ironConfig } from "../../../lib/middlewares/ironSession";
 import { login } from "../../../modules/user/user.service";
-
-const loginSchema = Joi.object({
-  userOrEmail: Joi.string().required(),
-  password: Joi.string().required()
-})
+import { loginSchema } from "../../../modules/user/user.schema";
 
 const handler = createHandler()
 
@@ -26,8 +21,7 @@ handler.post(validate({ body: loginSchema }), async (req, res) => {
     
   } catch (err) {
     
-    console.error(err);
-    throw err
+    return res.status(400).send(err.message)
     
   }
 })
