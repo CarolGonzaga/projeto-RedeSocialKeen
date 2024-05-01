@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { withIronSessionSsr } from "iron-session/next";
 import Link from "next/link";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 import { ironConfig } from "../lib/middlewares/ironSession";
 
@@ -54,19 +55,11 @@ const Posts = styled.div`
     gap: 25px;
   }
 `
+const fetcher = url => axios.get(url).then(res => res.data)
 
 function HomePage({ user }) {
   
-  const [data, setData] = useState([])
-
-  const handlePosts = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
-    setData(response.data);
-  }
-
-  useEffect(() => {
-    handlePosts()
-  }, [])
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
   
   return (
     <Body>
@@ -86,7 +79,7 @@ function HomePage({ user }) {
             />
 
             {
-              data.map(post => 
+              data?.map(post => 
                 <Post 
                   key={post._id}
                   text={post.text}
