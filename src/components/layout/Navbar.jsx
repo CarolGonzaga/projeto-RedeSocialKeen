@@ -102,7 +102,7 @@ const StyledEndIcon = styled(ArrowRightEndOnRectangleIcon)`
   height: 18px;
 `;
 
-function Navbar() {
+function Navbar({ username }) {
 
   const router = useRouter()
 
@@ -117,7 +117,7 @@ function Navbar() {
         <StyledH1>#Social Keen</StyledH1>
       </StyledNav>
       <StyledBar>
-        <StyledText>Olá, @usuario!</StyledText>
+        <StyledText>Olá, @{username}!</StyledText>
         <StyledLogout onClick={handleLogout}>
           <StyledEndIcon />
         </StyledLogout>

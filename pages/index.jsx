@@ -29,21 +29,8 @@ const Content = styled.div`
   }
 `;
 
-const RefreshPosts = styled.div`
-  text-align: center;
-  margin-bottom: 20px;
-
-  @media (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    margin-bottom: 30px;
-  }
-`
-
 const StyledH3 = styled(H3)`
-  margin: 30px 0;
-
-  @media (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    margin: 40px 0;
-  }
+  margin: 60px 0;
 `
 
 const Posts = styled.div`
@@ -63,14 +50,11 @@ function HomePage({ user }) {
   
   return (
     <Body>
-      <Navbar />
+      <Navbar username={user.user} />
       <Content>
         <PostContainer>
           <CreatePost username={user.user} />
           <StyledH3>Últimas postagens:</StyledH3>
-          <RefreshPosts>
-            <Link href="#">Carregar novas postagens</Link>
-          </RefreshPosts>
           <Posts>
             <Post 
               user={'Dev.CarolGonzaga'} 
