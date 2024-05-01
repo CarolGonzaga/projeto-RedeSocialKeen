@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
 import H2 from "../src/components/typography/H2";
-import H6 from "../src/components/typography/H6";
 import Button from "../src/components/inputs/Button";
 import Input from "../src/components/inputs/Input";
 import Text from "../src/components/typography/Text";

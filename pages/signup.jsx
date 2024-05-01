@@ -1,8 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { joiResolver } from '@hookform/resolvers/joi';
+import { joiResolver } from "@hookform/resolvers/joi";
 import { signupSchema } from "../modules/user/user.schema";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
 import H2 from "../src/components/typography/H2";
@@ -13,7 +16,6 @@ import Text from "../src/components/typography/Text";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
 import { EnvelopeIcon } from "@heroicons/react/24/solid";
-
 
 const FormContainer = styled.div`
   width: 100%;
@@ -116,19 +118,35 @@ const StyledText = styled(Text)`
   @media (max-width: 320px) {
     gap: 0;
   }
-`
+`;
 
 function SignupPage() {
   
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: joiResolver(signupSchema)
-  })
-  
-  const handleForm = (data) => {
-    console.log(data);
-  }
+  const router = useRouter() 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError
+  } = useForm({
+    resolver: joiResolver(signupSchema),
+  });
 
-  console.log(errors);
+  const handleForm = async (data) => {
+    try {
+      const { status } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`, data)
+      if (status === 201) {
+        router.push('/')
+      }
+
+    } catch (err) {
+      if (err.response.data.code === 11000) {
+        setError(err.response.data.duplicatedKey, {
+          type: 'duplicated'
+        })
+      }
+    }
+  };
 
   return (
     <ImageWithSpace>
@@ -141,15 +159,30 @@ function SignupPage() {
           <FormBody>
             <FormLine>
               <StyledUserIcon />
-              <Input label="Usuário" type="text" {...register('username')} error={errors.username} />
+              <Input
+                label="Usuário"
+                type="text"
+                {...register("username")}
+                error={errors.username}
+              />
             </FormLine>
             <FormLine>
               <StyledEnvelopeIcon />
-              <Input label="E-mail" type="email" {...register('email')} error={errors.email} />
+              <Input
+                label="E-mail"
+                type="email"
+                {...register("email")}
+                error={errors.email}
+              />
             </FormLine>
             <FormLine>
               <StyledLockIcon />
-              <Input label="Senha" type="password" {...register('password')} error={errors.password} />
+              <Input
+                label="Senha"
+                type="password"
+                {...register("password")}
+                error={errors.password}
+              />
             </FormLine>
           </FormBody>
 
@@ -158,7 +191,7 @@ function SignupPage() {
               Cadastrar
             </Button>
             <StyledText>
-              Já possui uma conta? 
+              Já possui uma conta?
               <Link href="/login">Entrar</Link>
             </StyledText>
           </FormFooter>
@@ -168,4 +201,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage
+export default SignupPage;

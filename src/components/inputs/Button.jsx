@@ -13,6 +13,7 @@ const Button = styled.button`
 
   :hover {
     background-color: ${props => props.theme.primaryHover};
+    font-size: 13px;
   }
 
   :disabled {

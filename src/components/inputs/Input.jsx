@@ -27,7 +27,8 @@ const StyledLabel = styled.label`
 
 const errorMessage = {
   "string.empty": "*Este campo é obrigatório!",
-  "string.email": "*Informe um e-mail válido!"
+  "string.email": "*Informe um e-mail válido!",
+  "duplicated": (label) => `*Já está em uso. Informe outro ${label}!`
 };
 
 const ErrorMessage = styled.span`
@@ -49,7 +50,10 @@ const Input = forwardRef(({ label, error, ...props }, ref) => {
     <StyledInputContainer>
       <StyledLabel isFilled={isFilled}>
         {label}
-        {error && <ErrorMessage>{errorMessage[error.type] || error.message}</ErrorMessage>}
+        {error && 
+        <ErrorMessage>
+          {error.type === "duplicated" ? errorMessage.duplicated(label) : errorMessage[error.type] || error.message}
+        </ErrorMessage>}
       </StyledLabel>
       <StyledInput
         {...props}
