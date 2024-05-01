@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 import H1 from "../typography/H1";
 import Text from "../typography/Text";
 
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
-import H4 from "../typography/H4";
 
 const StyledNavbar = styled.div`
   width: 100vw;
@@ -51,27 +51,6 @@ const StyledNav = styled.div`
 
 `;
 
-const StyledH1 = styled(H1)`
-  font-size: 36px;
-  margin-top: 0px;
-  line-height: 50px;
-  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 320px) {
-    font-size: 30px;
-  }
-
-  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
-  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    font-size: 50px;
-  }
-
-`
-
-const StyledText = styled(Text)`
-  font-weight: bold;
-`
-
 const StyledBar = styled.div`
   background-color: ${props => props.theme.white};
   width: 100vw;
@@ -91,6 +70,32 @@ const StyledBar = styled.div`
     height: 73px;
   }
 `;
+
+const StyledH1 = styled(H1)`
+  font-size: 36px;
+  margin-top: 0px;
+  line-height: 50px;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 320px) {
+    font-size: 30px;
+  }
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
+  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
+    font-size: 50px;
+  }
+
+`;
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+`;
+
+const StyledLogout = styled.a`
+  cursor: pointer;
+`
+
 const StyledEndIcon = styled(ArrowRightEndOnRectangleIcon)`
   color: ${(props) => props.theme.black};
   width: 18px;
@@ -98,6 +103,14 @@ const StyledEndIcon = styled(ArrowRightEndOnRectangleIcon)`
 `;
 
 function Navbar() {
+
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/logout`)
+    router.push('/')
+  }
+
   return (
     <StyledNavbar>
       <StyledNav>
@@ -105,9 +118,9 @@ function Navbar() {
       </StyledNav>
       <StyledBar>
         <StyledText>Olá, @usuario!</StyledText>
-        <Link href="/login">
+        <StyledLogout onClick={handleLogout}>
           <StyledEndIcon />
-        </Link>
+        </StyledLogout>
       </StyledBar>
     </StyledNavbar>
   );

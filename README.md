@@ -14,3 +14,4 @@
 - react hook form
 - joi resolver
 - axios
+- SSR Server Side Rendering

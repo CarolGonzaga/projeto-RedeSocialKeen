@@ -28,11 +28,11 @@ const StyledTextContainer = styled.div`
 function Post() {
   return (
     <PostContainer>
-      <StyledUsername>@AnaCaroline</StyledUsername>
-      <StyledDate>01 de Janeiro de 2024</StyledDate>
+      <StyledUsername>@Dev.CarolGonzaga</StyledUsername>
+      <StyledDate>01 de Maio de 2024</StyledDate>
       <StyledTextContainer>
-        FRASE DE EFEITO!
-        Frase de Efeito 2
+        Espero que gostem desse espaço que eu criei!
+        <br />Sintam-se em casa e usem sem moderação 😊
       </StyledTextContainer>
     </PostContainer>
   )

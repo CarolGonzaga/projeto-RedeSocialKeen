@@ -35,10 +35,10 @@ const TextFooter = styled.div`
   gap: 10px;
 `
 
-function CreatePost() {
+function CreatePost({ username }) {
   return (
     <PostBox>
-      <H4><Title>No que você está pensando, @usuário?</Title></H4>
+      <H4><Title>No que você está pensando, @{username}?</Title></H4>
       <TextContainer>
         <TextArea placeholder="Digite sua mensagem"/>
         <TextFooter>

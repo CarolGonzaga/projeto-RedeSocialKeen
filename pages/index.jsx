@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { withIronSessionSsr } from "iron-session/next";
+import Link from "next/link";
+
+import { ironConfig } from "../lib/middlewares/ironSession";
 
 import Post from "../src/components/cards/Post";
 import Navbar from "../src/components/layout/Navbar";
 import PostContainer from "../src/components/layout/PostContainer";
 import CreatePost from "../src/components/cards/CreatePost";
 import H3 from "../src/components/typography/H3";
-import Link from "next/link";
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.white};
@@ -50,23 +53,18 @@ const Posts = styled.div`
   }
 `
 
-function HomePage() {
+function HomePage({ user }) {
   return (
     <Body>
       <Navbar />
       <Content>
         <PostContainer>
-          <CreatePost />
+          <CreatePost username={user.user} />
           <StyledH3>Últimas postagens:</StyledH3>
           <RefreshPosts>
             <Link href="#">Carregar novas postagens</Link>
           </RefreshPosts>
           <Posts>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
             <Post />
           </Posts>
         </PostContainer>
@@ -74,5 +72,26 @@ function HomePage() {
     </Body>
   );
 }
+
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user
+    
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/login'
+        }
+      }
+    }
+
+    return {
+      props: {
+        user
+      }
+    }
+  }, ironConfig
+)
 
 export default HomePage;
