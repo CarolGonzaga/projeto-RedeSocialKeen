@@ -9,6 +9,8 @@ const theme = {
   black: '#3A3A3A',
   white: '#F6F1E9',
   error: '#8B322C',
+  disabledButton: '#976870',
+  disabledText: '#938989',
 
   WIDTH_XL: '1025px',
   HEIGHT_XL: '1000px',

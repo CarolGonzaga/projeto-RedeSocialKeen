@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import moment from "moment"
 
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
+
 const PostContainer = styled.div`
   background-color: ${(props) => props.theme.backgroundPost};
   width: 100%;
@@ -25,6 +27,12 @@ const StyledTextContainer = styled.div`
   margin: 20px 0;
   font-size: 14px;
 `
+const StyledMenuIcon = styled(EllipsisHorizontalIcon)`
+  color: ${(props) => props.theme.inputColor};
+  width: 25px;
+  height: 25px;
+`;
+
 
 function Post({ text, user, date }) {
   return (

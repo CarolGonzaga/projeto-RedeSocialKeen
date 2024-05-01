@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
-import axios from "axios";
 import { useSWRConfig } from "swr";
+import axios from "axios";
 
 import { createPostSchema } from "../../../modules/post/post.schema";
 
