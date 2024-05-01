@@ -106,6 +106,18 @@ const FormFooter = styled.div`
   gap: 10px;
 `;
 
+const StyledText = styled(Text)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  @media (max-width: 320px) {
+    gap: 0;
+  }
+`
+
 function SignupPage() {
   
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -129,27 +141,26 @@ function SignupPage() {
           <FormBody>
             <FormLine>
               <StyledUserIcon />
-              <Input placeholder="Nome de Usuário" type="text" {...register('username')} />
+              <Input label="Usuário" type="text" {...register('username')} error={errors.username} />
             </FormLine>
             <FormLine>
               <StyledEnvelopeIcon />
-              <Input placeholder="E-mail" type="email" {...register('email')} />
+              <Input label="E-mail" type="email" {...register('email')} error={errors.email} />
             </FormLine>
             <FormLine>
               <StyledLockIcon />
-              <Input placeholder="Senha" type="password" {...register('password')} />
-            </FormLine>
-            <FormLine>
-              <StyledLockIcon />
-              <Input placeholder="Repita a Senha" type="password" />
+              <Input label="Senha" type="password" {...register('password')} error={errors.password} />
             </FormLine>
           </FormBody>
 
           <FormFooter>
-            <Button type="submit">Cadastrar</Button>
-            <Text>
-              Já possui uma conta? <Link href="/login">Entrar</Link>
-            </Text>
+            <Button type="submit" disabled={Object.keys(errors).length > 0}>
+              Cadastrar
+            </Button>
+            <StyledText>
+              Já possui uma conta? 
+              <Link href="/login">Entrar</Link>
+            </StyledText>
           </FormFooter>
         </Form>
       </FormContainer>

@@ -9,9 +9,15 @@ const Button = styled.button`
   color: ${props => props.theme.white};
   font-size: 14px;
   font-weight: 300;
+  cursor: pointer;
 
   :hover {
     background-color: ${props => props.theme.primaryHover};
+  }
+
+  :disabled {
+    background-color: ${props => props.theme.backgroundBody};
+    cursor: default;
   }
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) {
