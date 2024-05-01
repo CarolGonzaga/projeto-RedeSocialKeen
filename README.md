@@ -15,3 +15,5 @@
 - joi resolver
 - axios
 - SSR Server Side Rendering
+- swr (para buscar no backend automaticamente e carregar os posts novos)
+- moment
