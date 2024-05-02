@@ -5,6 +5,7 @@ const theme = {
   backgroundPost: "#FFFFFF",
   backgroundBody: '#E4E4E4',
   backgroundIndex: '#F8F8F8',
+  backgrountTextArea: '#E9E9E9',
   inputColor: '#6c6b6c',
   black: '#3A3A3A',
   white: '#F6F1E9',

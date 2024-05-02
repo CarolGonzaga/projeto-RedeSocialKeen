@@ -13,7 +13,9 @@ import Text from "../typography/Text";
 
 const PostBox = styled.div`
   background-color: ${(props) => props.theme.backgroundPost};
-  width: 100%;
+  width: 85vw;
+  max-width: 520px;
+  margin: 0 auto;
   box-sizing: border-box;
   border: 1px dashed ${(props) => props.theme.black};
   border-radius: 5px;
@@ -42,6 +44,10 @@ const TextFooter = styled.div`
   gap: 10px;
 `;
 
+const StyledUser = styled.span`
+  color: ${(props) => props.theme.primary};
+`
+
 function CreatePost({ username }) {
   
   const { mutate } = useSWRConfig()
@@ -62,7 +68,7 @@ function CreatePost({ username }) {
   return (
     <PostBox>
       <H4>
-        <Title>No que você está pensando, @{username}?</Title>
+        <Title>No que você está pensando, @<StyledUser>{username}</StyledUser>?</Title>
       </H4>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextContainer>
@@ -70,7 +76,8 @@ function CreatePost({ username }) {
             placeholder="Digite sua mensagem" 
             control={control} 
             name="text"
-            maxLength="500"
+            maxLength="256"
+            id="inputText"
           />
           <TextFooter>
             <Text textAlign="left">A sua mensagem será pública</Text>

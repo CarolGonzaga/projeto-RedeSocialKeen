@@ -1,17 +1,35 @@
-import styled from "styled-components"
-import moment from "moment"
-
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
+import styled from "styled-components";
+import moment from "moment";
+import axios from "axios";
+import { useSWRConfig } from "swr";
+import MenuButton from "../nav/MenuButton";
 
 const PostContainer = styled.div`
   background-color: ${(props) => props.theme.backgroundPost};
-  width: 100%;
-  min-height: 154px;
   box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px dashed ${(props) => props.theme.black};
+  
+  width: 85vw;
+  max-width: 520px;
+  min-height: 154px;
+  max-height: 550px;
+  
   padding: 10px;
+  margin: 10px;
+  
+  border-radius: 10px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or
+  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
+    max-height: 400px;
+  }
 `
+
+const ContainerMenu = styled.div`
+  float: right;
+  cursor: pointer;
+`;
 
 const StyledUsername = styled.p`
   font-weight: bold;
@@ -19,25 +37,67 @@ const StyledUsername = styled.p`
   color: ${(props) => props.theme.primary};
 `
 
+const StyledHash = styled.span`
+  color: ${(props) => props.theme.black};
+  font-size: 14px;
+`
+
 const StyledDate = styled.p`
   font-size: 11px;
 `
 
 const StyledTextContainer = styled.div`
-  margin: 20px 0;
+  box-sizing: border-box;
   font-size: 14px;
+  word-wrap: break-word;
+  white-space: pre-line;
+  padding: 20px 0 40px 0;
+  max-height: 300px;
+  overflow-y: auto;
 `
-const StyledMenuIcon = styled(EllipsisHorizontalIcon)`
-  color: ${(props) => props.theme.inputColor};
-  width: 25px;
-  height: 25px;
-`;
 
+function Post({ text, user, date, isOwner, id }) {
 
-function Post({ text, user, date }) {
+  const { mutate } = useSWRConfig()
+  
+  const handleEdit = async () => {
+    console.log("Editar post");
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, {
+        data: { id }
+      })
+      if (response.status === 200)
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+      
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
   return (
     <PostContainer>
-      <StyledUsername>@{user}</StyledUsername>
+      {isOwner &&  
+        <ContainerMenu>
+          <MenuButton 
+            options={[
+                {
+                  text: "Editar",
+                  icon: "StyledPencilIcon",
+                  onClick: handleEdit,
+                },
+                {
+                  text: "Deletar",
+                  icon: "StyledTrashIcon",
+                  onClick: handleDelete,
+                },
+              ]}
+          />
+        </ContainerMenu>
+      }
+      <StyledUsername><StyledHash>@</StyledHash>{user}</StyledUsername>
       <StyledDate>{moment(date).format('LLL')}</StyledDate>
       <StyledTextContainer>
         {text}

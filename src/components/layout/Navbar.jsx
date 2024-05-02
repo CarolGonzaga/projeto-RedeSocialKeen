@@ -51,11 +51,22 @@ const StyledNav = styled.div`
 
 `;
 
-const StyledBar = styled.div`
+const StyledBarContainer = styled.div`
   background-color: ${props => props.theme.white};
-  width: 100vw;
+  width: 100%;
   height: 50px;
-  padding: 0 30px;
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
+  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
+    height: 73px;
+  }
+`;
+
+const StyledBar = styled.div`
+  width: 85vw;
+  max-width: 520px;
+  height: 100%;
+  margin: auto;
 
   display: flex;
   justify-content: space-between;
@@ -63,11 +74,7 @@ const StyledBar = styled.div`
 
   @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
   (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    width: 60%;
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0;
-    height: 73px;
+    padding: 0 10px;
   }
 `;
 
@@ -85,8 +92,11 @@ const StyledH1 = styled(H1)`
   (min-width: ${(props) => props.theme.HEIGHT_XL}) {
     font-size: 50px;
   }
-
 `;
+
+const StyledHash = styled.span`
+  color: #fff;
+`
 
 const StyledText = styled(Text)`
   font-weight: bold;
@@ -114,14 +124,16 @@ function Navbar({ username }) {
   return (
     <StyledNavbar>
       <StyledNav>
-        <StyledH1>#Social Keen</StyledH1>
+        <StyledH1><StyledHash>#</StyledHash>Social Keen</StyledH1>
       </StyledNav>
-      <StyledBar>
-        <StyledText>Olá, @{username}!</StyledText>
-        <StyledLogout onClick={handleLogout}>
-          <StyledEndIcon />
-        </StyledLogout>
-      </StyledBar>
+      <StyledBarContainer>
+        <StyledBar>
+          <StyledText>Olá, {username}!</StyledText>
+          <StyledLogout onClick={handleLogout}>
+            <StyledEndIcon />
+          </StyledLogout>
+        </StyledBar>
+      </StyledBarContainer>
     </StyledNavbar>
   );
 }

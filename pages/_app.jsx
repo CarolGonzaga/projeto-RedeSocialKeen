@@ -37,12 +37,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-track {
-      background: ${(props) => props.theme.white};
+      background-color: transparent;
       border-radius: 10px;
+      margin: 10px 0;
   }
 
   *::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.black};
+      background-color: rgba(0, 0, 0, 0.15);
       border-radius: 10px;
       border: none;
   }

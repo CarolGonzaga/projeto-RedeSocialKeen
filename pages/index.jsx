@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { withIronSessionSsr } from "iron-session/next";
-import Link from "next/link";
 import axios from "axios";
 import useSWR from "swr";
 
@@ -15,32 +13,22 @@ import H3 from "../src/components/typography/H3";
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.white};
-  overflow-y: auto;
 `
 
 const Content = styled.div`
   width: 100vw;
   max-width: 1000px;
   height: 100%;
-  overflow-y: auto;
-
-  @media (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    background-size: 25% 15%;
-  }
-`;
+`
 
 const StyledH3 = styled(H3)`
-  margin: 60px 0;
+  margin: 60px 10px;
 `
 
 const Posts = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
-
-  @media (min-width: ${(props) => props.theme.HEIGHT_XL}) {
-    gap: 25px;
-  }
+  gap: 25px;
 `
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -69,6 +57,8 @@ function HomePage({ user }) {
                   text={post.text}
                   user={post.createdBy.username}
                   date={post.createdDate}
+                  isOwner={post.createdBy._id === user.id}
+                  id={post._id}
                 />
               )  
             }
