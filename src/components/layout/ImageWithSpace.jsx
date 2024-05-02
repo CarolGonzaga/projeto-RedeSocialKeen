@@ -48,6 +48,7 @@ const StyledHead = styled.div`
     height: 100%;
     max-height: 100vh;
     max-width: 426px;
+    margin: 0;
   }
 
   @media (max-height: ${(props) => props.theme.HEIGHT_XL}) and
