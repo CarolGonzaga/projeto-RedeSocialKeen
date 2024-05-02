@@ -65,7 +65,6 @@ const iconComponents = {
 };
 
 const MenuButton = ({ options = [] }) => {
-
   const [show, setShow] = useState(false);
   const menuRef = useRef(null);
 
@@ -83,21 +82,27 @@ const MenuButton = ({ options = [] }) => {
     };
   }, [menuRef]);
 
+  const handleClick = (onClick) => {
+    setShow(false);
+    onClick();
+  };
+
   return (
     <StyledContainerMenu>
       <StyledMenuIcon onClick={() => setShow(!show)} />
       <StyledMenu show={show} ref={menuRef} onBlur={() => setShow(false)}>
-        {
-          options.map((option, pos) => (
-            <StyledOption key={`menu-option-${pos}`} onClick={option.onClick}>
-              <span>{option.text}</span>
-              {iconComponents[option.icon]}
-            </StyledOption>
-          ))
-        }
+        {options.map((option, pos) => (
+          <StyledOption
+            key={`menu-option-${pos}`}
+            onClick={() => handleClick(option.onClick)}
+          >
+            <span>{option.text}</span>
+            {iconComponents[option.icon]}
+          </StyledOption>
+        ))}
       </StyledMenu>
     </StyledContainerMenu>
-  )
-}
+  );
+};
 
-export default MenuButton
+export default MenuButton;

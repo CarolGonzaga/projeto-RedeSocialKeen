@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
   }
 
   a {

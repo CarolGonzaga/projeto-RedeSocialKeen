@@ -46,35 +46,44 @@ const TextFooter = styled.div`
 
 const StyledUser = styled.span`
   color: ${(props) => props.theme.primary};
-`
+`;
 
 function CreatePost({ username }) {
-  
-  const { mutate } = useSWRConfig()
+  const { mutate } = useSWRConfig();
 
-  const { control, handleSubmit, formState: { isValid }, reset } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+    reset,
+  } = useForm({
     resolver: joiResolver(createPostSchema),
-    mode: "all"
-  })
+    mode: "all",
+  });
 
   const onSubmit = async (data) => {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/post`,
+      data
+    );
     if (response.status === 201) {
-      reset()
-      mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+      reset();
+      mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`);
     }
-  }
-  
+  };
+
   return (
     <PostBox>
       <H4>
-        <Title>No que você está pensando, @<StyledUser>{username}</StyledUser>?</Title>
+        <Title>
+          No que você está pensando, @<StyledUser>{username}</StyledUser>?
+        </Title>
       </H4>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextContainer>
-          <ControlledTextArea 
-            placeholder="Digite sua mensagem" 
-            control={control} 
+          <ControlledTextArea
+            placeholder="Digite sua mensagem"
+            control={control}
             name="text"
             maxLength="256"
             id="inputText"

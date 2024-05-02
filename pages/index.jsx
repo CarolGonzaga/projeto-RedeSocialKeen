@@ -13,12 +13,22 @@ import H3 from "../src/components/typography/H3";
 
 const Body = styled.div`
   background-color: ${(props) => props.theme.white};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const Content = styled.div`
   width: 100vw;
   max-width: 1000px;
-  height: 100%;
+  min-height: 83vh;
+  max-height: 100%;
+  flex-grow: 1;
+
+  @media (min-height: ${(props) => props.theme.HEIGHT_XL}) or 
+  (min-width: ${(props) => props.theme.HEIGHT_XL}) {
+    min-height: 78vh;
+  }
 `
 
 const StyledH3 = styled(H3)`
