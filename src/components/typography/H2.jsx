@@ -6,7 +6,7 @@ const H2 = styled.h2`
 
   @media (min-width: ${(props) => props.theme.WIDTH_XL}) or
   (min-height: ${(props) => props.theme.HEIGHT_XL}) {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   @media (max-width: 320px) {
