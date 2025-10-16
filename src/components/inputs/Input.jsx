@@ -11,6 +11,16 @@ const StyledInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active {
+    /* Remove a cor de fundo forçado pelo navegador */
+    -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.white} inset !important;
+    /* Garante que a cor do texto seja a correta */
+    -webkit-text-fill-color: ${(props) => props.theme.black} !important;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -25,6 +35,11 @@ const StyledLabel = styled.label`
   align-items: center;
   gap: 10px;
   line-height: 1.2;
+
+  ${StyledInput}:-webkit-autofill + & {
+    top: -20px;
+    font-size: 10px;
+  }
 `;
 
 const errorMessage = {
