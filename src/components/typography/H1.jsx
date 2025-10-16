@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const H1 = styled.h1`
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 500;
   text-align: center;
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
