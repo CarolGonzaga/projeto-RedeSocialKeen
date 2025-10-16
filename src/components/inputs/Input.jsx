@@ -1,5 +1,10 @@
 import { forwardRef, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const onAutoFillStart = keyframes`
+  from {}
+  to {}
+`;
 
 const StyledInputContainer = styled.div`
   position: relative;
@@ -16,10 +21,10 @@ const StyledInput = styled.input`
   &:-webkit-autofill:hover, 
   &:-webkit-autofill:focus, 
   &:-webkit-autofill:active {
-    /* Remove a cor de fundo forçado pelo navegador */
     -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.white} inset !important;
-    /* Garante que a cor do texto seja a correta */
     -webkit-text-fill-color: ${(props) => props.theme.black} !important;
+    animation-name: ${onAutoFillStart};
+    animation-fill-mode: both;
   }
 `;
 
@@ -28,24 +33,16 @@ const StyledLabel = styled.label`
   top: ${({ isFilled }) => (isFilled ? "-20px" : "25%")};
   left: 0;
   pointer-events: none;
-  font-size: ${({ isFilled }) => (isFilled ? "8px" : "10px")};
+  font-size: ${({ isFilled }) => (isFilled ? "10px" : "12px")};
   transition: all 0.3s ease;
-
   display: flex;
-  align-items: center;
   gap: 10px;
-  line-height: 1.2;
-
-  ${StyledInput}:-webkit-autofill + & {
-    top: -20px;
-    font-size: 10px;
-  }
 `;
 
 const errorMessage = {
   "string.empty": "*Este campo é obrigatório!",
   "string.email": "*Informe um e-mail válido!",
-  "duplicated": (label) => `*Este e-mail já está em uso!`
+  "duplicated": (label) => `*Já está em uso. Informe outro ${label}!`
 };
 
 const ErrorMessage = styled.span`
@@ -61,6 +58,12 @@ const Input = forwardRef(({ label, error, ...props }, ref) => {
 
   const handleBlur = (event) => {
     setIsFilled(!!event.target.value);
+  };
+  
+  const handleAutoFill = (event) => {
+    if (event.animationName === onAutoFillStart.getName()) {
+      setIsFilled(true);
+    }
   };
 
   return (
@@ -78,6 +81,7 @@ const Input = forwardRef(({ label, error, ...props }, ref) => {
         ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onAnimationStart={handleAutoFill}
       />
     </StyledInputContainer>
   );

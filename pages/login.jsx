@@ -138,7 +138,7 @@ function LoginPage() {
         })
       } else if (response.data === 'not found') {
         setError('userOrEmail', {
-          message: 'Usuário ou E-mail não encontrado!'
+          message: 'Não cadastrado!'
         })
       }
     }
