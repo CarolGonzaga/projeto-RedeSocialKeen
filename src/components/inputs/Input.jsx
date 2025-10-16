@@ -18,17 +18,19 @@ const StyledLabel = styled.label`
   top: ${({ isFilled }) => (isFilled ? "-20px" : "25%")};
   left: 0;
   pointer-events: none;
-  font-size: ${({ isFilled }) => (isFilled ? "10px" : "12px")};
+  font-size: ${({ isFilled }) => (isFilled ? "8px" : "10px")};
   transition: all 0.3s ease;
 
   display: flex;
+  align-items: center;
   gap: 10px;
+  line-height: 1.2;
 `;
 
 const errorMessage = {
   "string.empty": "*Este campo é obrigatório!",
   "string.email": "*Informe um e-mail válido!",
-  "duplicated": (label) => `*Já está em uso. Informe outro ${label}!`
+  "duplicated": (label) => `*Este e-mail já está em uso!`
 };
 
 const ErrorMessage = styled.span`
